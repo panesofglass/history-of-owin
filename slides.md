@@ -29,17 +29,44 @@
 
 ## September 7, 2010
 
-    From: Ryan Riley
-    To: Benjamin van der Veen, Mauricio Scheffer, Scott Koon
-    Subject: Rack / Sinatra on .NET
-    
-    I’ve noticed a trend recently in projects each of us has worked/is working on and wondered if we might be willing to pool our resources. This idea started after some emails with Benjamin (kayak) but expanded as I learned about Scott’s Boat (includes RackSharp) and Mauricio’s Figment. My related projects are frack and frank....
-    ...
-    If you are interested in working together, please let me know.... I’m sure we could agree on a common platform for our efforts.
+> From: Ryan Riley
+> To: Benjamin van der Veen, Mauricio Scheffer, Scott Koon
+> Subject: Rack / Sinatra on .NET
+>
+> I’ve noticed a trend recently in projects each of us has worked/is working on and wondered if we might be willing to pool our resources. This idea started after some emails with Benjamin (kayak) but expanded as I learned about Scott’s Boat (includes RackSharp) and Mauricio’s Figment. My related projects are frack and frank....
+> ...
+> If you are interested in working together, please let me know.... I’m sure we could agree on a common platform for our efforts.
+
+---
 
 ## September 27, 2010
 
 Benjamin van der Veen proposed the first set of interfaces:
 
     [lang=cs]
+    public interface IHttpResponder {
+        IObservable<IHttpServerResponse> Respond(IHttpServerRequest request, IDictionary<string, object> context);
+    }
     
+    public interface IHttpServerRequest {
+        HttpRequestLine RequestLine { get; }
+        IDictionary<string, string> Headers { get; }
+        IObservable<ArraySegment<byte>> GetBodyChunk();
+    }
+    
+    public interface IHttpServerResponse {
+        HttpStatusLine StatusLine { get; }
+        IDictionary<string, string> Headers { get; }
+        string BodyFile { get; }
+        IObservable<ArraySegment<byte>> GetBodyChunk();
+    }
+
+---
+
+## November 29, 2010
+
+### Scott Koon Creates [.NET HTTP Abstractions Google Group](https://groups.googe.com/forum/#!forum/net-http-abstractions)
+
+https://groups.google.com/forum/#!forum/net-http-abstractions
+
+
