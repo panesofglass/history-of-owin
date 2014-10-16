@@ -1,4 +1,4 @@
 source http://nuget.org/api/v2
 
 nuget FAKE
-nuget FsReveal 0.0.6-beta
+nuget FsReveal 0.0.5-beta
