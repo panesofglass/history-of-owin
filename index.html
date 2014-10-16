@@ -223,8 +223,6 @@
 <li>Dynamic faction</li>
 </ul>
 
-<p>(I exaggerate a little by using "faction")</p>
-
 </section>
 
 <section>
@@ -252,11 +250,9 @@
 
 <section>
 
-<h2>What about the Dynamic (Iron-) Languages?</h2>
+<h2>What about the Iron- Languages?</h2>
 
-<ul>
-<li><code>IDictionary&lt;string, object&gt;</code> to the rescue!</li>
-</ul>
+<p><code>IDictionary&lt;string, object&gt;</code> to the rescue!</p>
 
 </section>
 
@@ -308,11 +304,47 @@
 
 <section>
 
-<h2>Proposed Soluion #4: "Delegate of Doom" &amp;trade;</h2>
+<h2>Proposed Soluion #4: <a href="https://groups.google.com/d/msg/net-http-abstractions/rD18Hj1DwdQ/d_nrDyOLqcIJ">"Delegate of Doom"</a></h2>
 
-<ul>
-<li>Accepted!</li>
-</ul>
+<p>Accepted!</p>
+
+<table class="pre"><tr><td><pre lang="cs"><span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> AppDelegate(
+    IDictionary&lt;<span class="k">string</span>, <span class="k">object</span>&gt; env,
+    ResultDelegate result,
+    Action&lt;Exception&gt; fault);
+
+<span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> ResultDelegate(
+    <span class="k">string</span> status,
+    IDictionary&lt;<span class="k">string</span>, IEnumerable&lt;<span class="k">string</span>&gt;<span class="o">&gt;</span> headers,
+    BodyDelegate body);
+
+<span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> BodyDelegate(
+    Func&lt;ArraySegment&lt;<span class="k">byte</span>&gt;, <span class="k">bool</span>&gt; write,
+    Func&lt;Action, <span class="k">bool</span>&gt; flush,
+    Action&lt;Exception&gt; end,
+    CancellationToken cancellationToken);</pre></td></tr></table>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
+<h2>Problem: Few Understand the "Delegate of Doom"</h2>
+
+</section>
+
+<section>
+
+<h2>Solution: Gate Helper Library</h2>
+
+</section>
+
+<section>
+
+<h2>???</h2>
 
 </section>
 
