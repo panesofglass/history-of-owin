@@ -64,9 +64,34 @@
 
 <section>
 
+<h1>Why OWIN?</h1>
+
+<h3>Follow the trail of solutions to (perceived) problems</h3>
+
+</section>
+
 <section>
 
-<h1>Prelude</h1>
+<section>
+
+<h1>Problem: Desire for Light-weight Web Framework</h1>
+
+</section>
+
+<section>
+
+<h2>Solutions</h2>
+
+<ul>
+<li>Boat (repo removed)</li>
+<li><a href="http://bugsquash.blogspot.com/2010/08/figment-web-dsl-for-f.html">Figment</a></li>
+<li><a href="http://frankfs.net/">Frank</a></li>
+<li><a href="http://web.archive.org/web/20101102133523/http://kayakhttp.com/">Kayak</a></li>
+<li><a href="http://nancyfx.com">NancyFx</a></li>
+<li><a href="http://jondot.github.io/nina/">Nina</a> (no updates in 4 years)</li>
+<li><a href="http://suave.io/">Suave</a></li>
+<li><a href="https://wcf.codeplex.com/">WCF Web API</a></li>
+</ul>
 
 </section>
 
@@ -75,14 +100,34 @@
 <h2>September 7, 2010</h2>
 
 <blockquote>
-  <p>From: Ryan Riley
-To: Benjamin van der Veen, Mauricio Scheffer, Scott Koon
-Subject: Rack / Sinatra on .NET</p>
+  <p>From: Ryan Riley</p>
 
-  <p>I’ve noticed a trend recently in projects each of us has worked/is working on and wondered if we might be willing to pool our resources. This idea started after some emails with Benjamin (kayak) but expanded as I learned about Scott’s Boat (includes RackSharp) and Mauricio’s Figment. My related projects are frack and frank....
-...
-If you are interested in working together, please let me know.... I’m sure we could agree on a common platform for our efforts.</p>
+  <p>To: Benjamin van der Veen, Mauricio Scheffer, Scott Koon</p>
+
+  <p>Subject: Rack / Sinatra on .NET</p>
+
+  <p>I’ve noticed a trend recently in projects each of us has worked/is working on and wondered if we might be willing to pool our resources. This idea started after some emails with Benjamin (kayak) but expanded as I learned about Scott’s Boat (includes RackSharp) and Mauricio’s Figment. My related projects are frack and frank....</p>
+
+  <p>...</p>
+
+  <p>If you are interested in working together, please let me know.... I’m sure we could agree on a common platform for our efforts.</p>
 </blockquote>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
+<h1>Problem: Repeat Solutions for Self-Hosting</h1>
+
+</section>
+
+<section>
+
+<h2>Solution: Collaborate</h2>
 
 </section>
 
@@ -93,7 +138,9 @@ If you are interested in working together, please let me know.... I’m sure we 
 <p>Benjamin van der Veen proposed the first set of interfaces:</p>
 
 <table class="pre"><tr><td><pre lang="cs"><span class="k">public</span> <span class="k">interface</span> IHttpResponder {
-    IObservable&lt;IHttpServerResponse&gt; Respond(IHttpServerRequest request, IDictionary&lt;<span class="k">string</span>, <span class="k">object</span>&gt; context);
+    IObservable&lt;IHttpServerResponse&gt; Respond(
+        IHttpServerRequest request,
+        IDictionary&lt;<span class="k">string</span>, <span class="k">object</span>&gt; context);
 }
 
 <span class="k">public</span> <span class="k">interface</span> IHttpServerRequest {
