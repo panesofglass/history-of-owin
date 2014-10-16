@@ -209,6 +209,34 @@
 
 <section>
 
+<h1>Progress!</h1>
+
+</section>
+
+<section>
+
+<h2>Name: Open Web Interface for .NET (OWIN)</h2>
+
+</section>
+
+<section>
+
+<h2>Specification writing begins</h2>
+
+</section>
+
+<section>
+
+<h2>BHAG: Run ASP.NET MVC on OWIN</h2>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
 <h2>Problem: Trouble in Paradise</h2>
 
 </section>
@@ -332,7 +360,9 @@
 
 <section>
 
-<h2>Problem: Few Understand the "Delegate of Doom"</h2>
+<h2>Problem: Implementations Cease</h2>
+
+<p>"Delegate of Doom" proved too difficult for most</p>
 
 </section>
 
@@ -345,6 +375,75 @@
 <section>
 
 <h2>???</h2>
+
+<p><img src="http://www.topito.com/wp-content/uploads/2013/01/code-34.gif" alt="When your library dependency becomes a helper dependency" /></p>
+
+<p><em>from <a href="http://server.dzone.com/articles/reality-developers-life-gifs">The Reality of a Developer's Life - in GIFs, Of Course</a></em></p>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
+<h1>WIN!</h1>
+
+<h2>SignalR</h2>
+
+</section>
+
+<section>
+
+<h2>Problem: <a href="https://groups.google.com/d/msg/net-http-abstractions/Cbvy2x27Few/Oor2UwA0W1wJ">"Delegate of Doom" doesn't work for SignalR</a></h2>
+
+</section>
+
+<section>
+
+<h2>Double-tap</h2>
+
+<ul>
+<li>Nancy</li>
+<li>OWIN</li>
+<li>Rack</li>
+<li>Web API</li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>Single-tap</h2>
+
+<ul>
+<li>ASP.NET MVC</li>
+<li>Fubu MVC</li>
+<li>node.js</li>
+<li>Razor</li>
+<li>SignalR</li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>Explained</h2>
+
+<blockquote>
+  <p>There are ways to run a single-tap web framework on a double-tap owin pipeline, but they all boil down to buffering write data.... Increased complexity, more memory to hold the body until the fwk returns, and cpu spent copying that data… Plus for fully synchronous web frameworks it means every response body will be entirely buffered because there’s no way for the server to deliver the output stream until the initial call returns. ... it’s pretty extreme compared to just passing the server’s output stream and a response header idictionary in the original call.</p>
+</blockquote>
+
+</section>
+
+<section>
+
+<h2>Explained (cont)</h2>
+
+<blockquote>
+  <p>Running a double-tap framework on a single-tap pipeline by comparison is easy – the adapter just calls framework then calls its callback with the output stream.</p>
+</blockquote>
 
 </section>
 
