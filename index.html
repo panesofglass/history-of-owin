@@ -447,6 +447,106 @@
 
 </section>
 
+<section>
+
+<h2>Solution</h2>
+
+<table class="pre"><tr><td><pre lang="cs"><span class="k">using</span> AppFunc <span class="o">=</span> Func&lt;IDitionary&lt;<span class="k">string</span>, <span class="k">object</span>&gt;, Task&gt;</pre></td></tr></table>
+
+</section>
+
+<section>
+
+<h2><code>Task</code>?</h2>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
+<h1>Push to 1.0</h1>
+
+</section>
+
+<section>
+
+<h2>Microsoft adopts OWIN as Katana</h2>
+
+</section>
+
+<section>
+
+<h2>New Implementations</h2>
+
+<ul>
+<li><a href="https://github.com/FixProject/Fix">Fix</a></li>
+<li><a href="https://github.com/fsprojects/dyfrig">FSharp.Owin (now Dyfrig)</a></li>
+<li><a href="https://github.com/prabirshrestha/simple-owin">SimpleOwin</a></li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>owin.dll</h2>
+
+<p>Specified type aliases removed, but <code>IAppBuilder</code> remains:</p>
+
+<table class="pre"><tr><td><pre lang="cs"><span class="k">public</span> <span class="k">interface</span> IAppBuilder
+{
+    IDictionary&lt;<span class="k">string</span>, <span class="k">object</span>&gt; Properties { get; }
+    IAppBuilder Use(<span class="k">object</span> middleware, <span class="k">params</span> <span class="k">object</span>[] args);
+    <span class="k">object</span> Build(Type returnType);
+    IAppBuilder New();
+}</pre></td></tr></table>
+
+</section>
+
+</section>
+
+<section>
+
+<h2>Adoption!</h2>
+
+<p>TODO: List middlewares available, including Web API, hosts, security, etc.</p>
+
+</section>
+
+<section>
+
+<h1>Looking Ahead</h1>
+
+</section>
+
+<section>
+
+<h2>OWIN Management Committee</h2>
+
+</section>
+
+<section>
+
+<h2>ASP.NET vNext</h2>
+
+</section>
+
+<section>
+
+<h2>Specification Updates</h2>
+
+</section>
+
+<section>
+
+<h1>We Want You!</h1>
+
+<p><a href="http://owin.org">http://owin.org</a></p>
+
+<p><a href="http://github.com/owin/owin">http://github.com/owin/owin</a></p>
+
 </section>
 
 
