@@ -8,7 +8,7 @@
 
 # A Brief History of OWIN
 
-### Open Web Interface for .NET
+## Open Web Interface for .NET
 
 ***
 
@@ -23,19 +23,52 @@
 
 ***
 
-# Prelude
+# Why OWIN?
+
+***
+
+## Problem: Desire for Fast and Light-weight Frameworks and Servers
+
+* ASP.NET was "too heavy"
+* IIS was "too slow"
+
+---
+
+## Solutions
+
+* Boat (repo removed)
+* [Figment](http://bugsquash.blogspot.com/2010/08/figment-web-dsl-for-f.html)
+* [Frank](http://frankfs.net/)
+* [Kayak](http://web.archive.org/web/20101102133523/http://kayakhttp.com/)
+* [NancyFx](http://nancyfx.com)
+* [Nina](http://jondot.github.io/nina/) (no updates in 4 years)
+* [OpenRasta](http://openrasta.org/)
+* [Suave](http://suave.io/)
+* [WCF Web API](https://wcf.codeplex.com/)
+
+***
+
+## Problem: Repetition
+
+* [Sinatra](http://www.sinatrarb.com/) clones
+* ASP.NET adapters
+* Self-host adapters (esp. `HttpListener`)
+
+---
+
+## Solution: Collaborate
 
 ---
 
 ## September 7, 2010
 
-> From: Ryan Riley
-> To: Benjamin van der Veen, Mauricio Scheffer, Scott Koon
-> Subject: Rack / Sinatra on .NET
+> I’ve noticed a trend recently in projects each of us has worked/is working on and wondered if we might be willing to pool our resources....
 >
-> I’ve noticed a trend recently in projects each of us has worked/is working on and wondered if we might be willing to pool our resources. This idea started after some emails with Benjamin (kayak) but expanded as I learned about Scott’s Boat (includes RackSharp) and Mauricio’s Figment. My related projects are frack and frank....
 > ...
+>
 > If you are interested in working together, please let me know.... I’m sure we could agree on a common platform for our efforts.
+
+- [Ryan Riley](https://twitter.com/panesofglass) to [Benjamin van der Veen](https://twitter.com/bvanderveen), [Mauricio Scheffer](https://twitter.com/mausch), and [Scott Koon](https://twitter.com/lazycoder)
 
 ---
 
@@ -45,7 +78,9 @@ Benjamin van der Veen proposed the first set of interfaces:
 
     [lang=cs]
     public interface IHttpResponder {
-        IObservable<IHttpServerResponse> Respond(IHttpServerRequest request, IDictionary<string, object> context);
+        IObservable<IHttpServerResponse> Respond(
+            IHttpServerRequest request,
+            IDictionary<string, object> context);
     }
     
     public interface IHttpServerRequest {
@@ -65,8 +100,253 @@ Benjamin van der Veen proposed the first set of interfaces:
 
 ## November 29, 2010
 
-### Scott Koon Creates [.NET HTTP Abstractions Google Group](https://groups.googe.com/forum/#!forum/net-http-abstractions)
+Scott Koon creates [.NET HTTP Abstractions](https://groups.googe.com/forum/#!forum/net-http-abstractions)
 
 https://groups.google.com/forum/#!forum/net-http-abstractions
 
+***
 
+## Problem: Opinions and Existing Implementations
+
+---
+
+## Solution: Define a Common Interface
+
+* [Rack](https://rack.github.io/) (Ruby)
+* [WSGI](http://wsgi.readthedocs.org/en/latest/#) (Python)
+
+---
+
+## Consensus to share server wrappers
+
+***
+
+# Progress!
+
+---
+
+## Name: Open Web Interface for .NET (OWIN)
+
+---
+
+## Specification writing begins
+
+---
+
+## BHAG: Run ASP.NET MVC on OWIN
+
+***
+
+## Problem: Trouble in Paradise
+
+---
+
+## Troublemakers
+
+* Object-oriented faction
+* Functional faction
+* Dynamic faction
+
+---
+
+## Disagreement on library dependency
+
+---
+
+## Disagreement on interface types
+
+---
+
+## Solution : Use Delegates and FCL Types
+
+* Functional
+* No external dependency required
+
+---
+
+## What about the Iron- Languages?
+
+`IDictionary<string, object>` to the rescue!
+
+***
+
+## Problem: How to Represent Async Access to Message Body?
+
+---
+
+## Proposed Solution #1: `Stream`
+
+* Rejected
+* Considered "too heavy"
+* Async access considered "too slow"
+
+---
+
+## Proposed Solution #2: `IObservable<T>`
+
+* Rejected
+* Back-pressure a concern
+* Required library dependency for .NET 3.5
+
+---
+
+## Proposed Solution #3: `Task<T>`
+
+* Rejected
+* Required .NET 4.0
+* Some libraries had existing .NET 3.5 base
+
+---
+
+## Proposed Soluion #4: ["Delegate of Doom"](https://groups.google.com/d/msg/net-http-abstractions/rD18Hj1DwdQ/d_nrDyOLqcIJ)
+
+Accepted!
+
+    [lang=cs]
+    public delegate void AppDelegate(
+        IDictionary<string, object> env,
+        ResultDelegate result,
+        Action<Exception> fault);
+    
+    public delegate void ResultDelegate(
+        string status,
+        IDictionary<string, IEnumerable<string>> headers,
+        BodyDelegate body);
+    
+    public delegate void BodyDelegate(
+        Func<ArraySegment<byte>, bool> write,
+        Func<Action, bool> flush,
+        Action<Exception> end,
+        CancellationToken cancellationToken);
+
+***
+
+## Problem: Implementations Cease
+
+"Delegate of Doom" proved too difficult for most
+
+---
+
+## Solution: Gate Helper Library
+
+---
+
+## ???
+
+![When your library dependency becomes a helper dependency](http://www.topito.com/wp-content/uploads/2013/01/code-34.gif)
+
+*from [The Reality of a Developer's Life - in GIFs, Of Course](http://server.dzone.com/articles/reality-developers-life-gifs)*
+
+***
+
+# WIN!
+
+## SignalR 
+
+---
+
+## Problem: ["Delegate of Doom" doesn't work for SignalR](https://groups.google.com/d/msg/net-http-abstractions/Cbvy2x27Few/Oor2UwA0W1wJ)
+
+---
+
+## Double-tap
+
+* Nancy
+* OWIN
+* Rack
+* Web API
+
+---
+
+## Single-tap
+
+* ASP.NET MVC
+* Fubu MVC
+* node.js
+* Razor
+* SignalR
+
+---
+
+## Explained
+
+> There are ways to run a single-tap web framework on a double-tap owin pipeline, but they all boil down to buffering write data.... Increased complexity, more memory to hold the body until the fwk returns, and cpu spent copying that data… Plus for fully synchronous web frameworks it means every response body will be entirely buffered because there’s no way for the server to deliver the output stream until the initial call returns. ... it’s pretty extreme compared to just passing the server’s output stream and a response header idictionary in the original call.
+
+---
+
+## Explained (cont)
+
+> Running a double-tap framework on a single-tap pipeline by comparison is easy – the adapter just calls framework then calls its callback with the output stream.
+
+---
+
+## Solution
+
+    [lang=cs]
+    using AppFunc = Func<IDitionary<string, object>, Task>
+
+---
+
+## `Task`?
+
+***
+
+# Push to 1.0
+
+---
+
+## Microsoft adopts OWIN as Katana
+
+---
+
+## New Implementations
+
+* [Fix](https://github.com/FixProject/Fix)
+* [Dyfrig](https://github.com/panesofglass/dyfrig)
+* [SimpleOwin](https://github.com/prabirshrestha/simple-owin)
+* [Simple.Owin](https://github.com/EddieGarmon/Simple.Owin)
+
+---
+
+## owin.dll
+
+Specified type aliases removed, but `IAppBuilder` remains:
+
+    [lang=cs]
+    public interface IAppBuilder
+    {
+        IDictionary<string, object> Properties { get; }
+        IAppBuilder Use(object middleware, params object[] args);
+        object Build(Type returnType);
+        IAppBuilder New();
+    }
+
+***
+
+## Adoption!
+
+TODO: List middlewares available, including Web API, hosts, security, etc.
+
+***
+
+# Looking Ahead
+
+***
+
+## OWIN Management Committee
+
+***
+
+## ASP.NET vNext
+
+***
+
+## Specification Updates
+
+***
+
+# We Want You!
+
+http://owin.org
+
+http://github.com/owin/owin
