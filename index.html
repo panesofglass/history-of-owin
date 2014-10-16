@@ -188,8 +188,130 @@
 
 <section>
 
+<h2>Solution: Define a Common Interface</h2>
+
 <ul>
-<li><a href="https://rack.github.io/">Rack</a>, and <a href="http://wsgi.readthedocs.org/en/latest/#">WSGI</a></li>
+<li><a href="https://rack.github.io/">Rack</a> (Ruby)</li>
+<li><a href="http://wsgi.readthedocs.org/en/latest/#">WSGI</a> (Python)</li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>Consensus to share server wrappers</h2>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
+<h2>Problem: Trouble in Paradise</h2>
+
+</section>
+
+<section>
+
+<h2>Troublemakers</h2>
+
+<ul>
+<li>Object-oriented faction</li>
+<li>Functional faction</li>
+<li>Dynamic faction</li>
+</ul>
+
+<p>(I exaggerate a little by using "faction")</p>
+
+</section>
+
+<section>
+
+<h2>Disagreement on library dependency</h2>
+
+</section>
+
+<section>
+
+<h2>Disagreement on interface types</h2>
+
+</section>
+
+<section>
+
+<h2>Solution : Use Delegates and FCL Types</h2>
+
+<ul>
+<li>Functional</li>
+<li>No external dependency required</li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>What about the Dynamic (Iron-) Languages?</h2>
+
+<ul>
+<li><code>IDictionary&lt;string, object&gt;</code> to the rescue!</li>
+</ul>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
+<h2>Problem: How to Represent Async Access to Message Body?</h2>
+
+</section>
+
+<section>
+
+<h2>Proposed Solution #1: <code>Stream</code></h2>
+
+<ul>
+<li>Rejected</li>
+<li>Considered "too heavy"</li>
+<li>Async access considered "too slow"</li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>Proposed Solution #2: <code>IObservable&lt;T&gt;</code></h2>
+
+<ul>
+<li>Rejected</li>
+<li>Back-pressure a concern</li>
+<li>Required library dependency for .NET 3.5</li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>Proposed Solution #3: <code>Task&lt;T&gt;</code></h2>
+
+<ul>
+<li>Rejected</li>
+<li>Required .NET 4.0</li>
+<li>Some libraries had existing .NET 3.5 base</li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>Proposed Soluion #4: "Delegate of Doom" &amp;trade;</h2>
+
+<ul>
+<li>Accepted!</li>
 </ul>
 
 </section>
