@@ -157,10 +157,11 @@ https://groups.google.com/forum/#!forum/net-http-abstractions
 
 ---
 
-## Solution : Use Delegates and FCL Types
+## Solution : No Dependency Required
 
-* Functional
-* No external dependency required
+---
+
+## Solution : Use Delegates and FCL Types
 
 ---
 
@@ -338,6 +339,10 @@ TODO: List middlewares available, including Web API, hosts, security, etc.
 ***
 
 ## ASP.NET vNext
+
+---
+
+## [Assembly Neutral Interfaces](http://davidfowl.com/assembly-neutral-interfaces-implementation/)
 
 ***
 
