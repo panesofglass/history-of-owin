@@ -1,3 +1,4 @@
+*.swp
 .paket/paket.exe
 gh-pages
 output
