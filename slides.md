@@ -461,9 +461,7 @@ Specified type aliases removed, but `IAppBuilder` remains:
 
 ***
 
-## Specification Updates
-
-<iframe src="https://github.com/owin/owin/issues"></iframe>
+## [Specification Updates](https://github.com/owin/owin/issues)
 
 ***
 
