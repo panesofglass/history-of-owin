@@ -326,15 +326,106 @@ Specified type aliases removed, but `IAppBuilder` remains:
 
 ## Adoption!
 
-TODO: List middlewares available, including Web API, hosts, security, etc.
+***
+
+## Implementations
+
+---
+
+### [Katana (Microsoft.Owin)](http://www.nuget.org/packages/Microsoft.Owin/)
+
+---
+
+### [Fix](http://www.nuget.org/packages/Fix/0.8.1-pre)
+
+---
+
+### [Dyfrig](http://www.nuget.org/packages/Dyfrig/)
 
 ***
+
+## Frameworks
+
+---
+
+### [SignalR](http://www.nuget.org/packages/Microsoft.AspNet.SignalR.Owin/)
+
+---
+
+### [NancyFx](http://nancyfx.org/)
+
+---
+
+### [ASP.NET Web API](http://www.nuget.org/packages/Microsoft.AspNet.WebApi.Owin/)
+
+---
+
+### FubuMVC
+
+***
+
+## Servers
+
+---
+
+### [System.Web](http://www.nuget.org/packages/Microsoft.Owin.Host.SystemWeb/)
+
+---
+
+### [HttpListener](http://www.nuget.org/packages/Microsoft.Owin.Host.HttpListener/)
+
+---
+
+### [IIS](http://www.nuget.org/packages/Microsoft.Owin.Host.IIS/1.0.0-alpha1)
+
+---
+
+### [Nowin](https://github.com/Bobris/Nowin)
+
+---
+
+### [Fracture](https://github.com/fractureio/fracture.http)
+
+***
+
+## Middleware
+
+---
+
+### [CORS](http://www.nuget.org/packages/Microsoft.Owin.Cors/)
+
+---
+
+### [Security](http://www.nuget.org/packages?q=owin+security)
+
+---
+
+### [Routing (Superscribe)](http://roysvork.wordpress.com/2013/09/22/why-you-shouldnt-use-a-web-framework-to-build-your-next-api/)
+
+---
+
+### [Diagnostics](http://www.nuget.org/packages/Microsoft.Owin.Diagnostics/)
+
+---
+
+### [Glimpse v2.0](https://github.com/Glimpse/Glimpse/pull/738)
+
+***
+
+## Put it All Together!
+
+    [lang=cs]
+    public class Startup {
+        public void Configuration(IAppBuilder app) {
+            app.Properties["host.AppName"] = "composed app";
+            app.UseCors(Cors.CorsOptions.AllowAll)
+               .UseWebApi(new HttpConfiguration())
+               .MapHubs("signalr", new HubConfiguration())
+               .UseNancy();
+        }
+    }
 
 # Looking Ahead
-
-***
-
-## OWIN Management Committee
 
 ***
 
@@ -342,16 +433,38 @@ TODO: List middlewares available, including Web API, hosts, security, etc.
 
 ---
 
+## BHAG Unlocked!
+### MVC 6
+
+---
+
 ## [Assembly Neutral Interfaces](http://davidfowl.com/assembly-neutral-interfaces-implementation/)
+### Time to revisit interface?
+
+---
+
+## Faster Servers!
+
+* Kestrel
+* WebListener
+* Helios (IIS without System.Web)
+
+***
+
+## OWIN Management Committee
 
 ***
 
 ## Specification Updates
 
+<iframe src="https://github.com/owin/owin/issues"></iframe>
+
 ***
 
-# We Want You!
+# We Need Your Help!
 
 http://owin.org
 
 http://github.com/owin/owin
+
+http://groups.google.com/group/net-http-abstractions
