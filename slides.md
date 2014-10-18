@@ -332,15 +332,15 @@ Specified type aliases removed, but `IAppBuilder` remains:
 
 ---
 
-### [Katana (Microsoft.Owin)](http://www.nuget.org/packages/Microsoft.Owin/)
+## [Katana (Microsoft.Owin)](http://www.nuget.org/packages/Microsoft.Owin/)
 
 ---
 
-### [Fix](http://www.nuget.org/packages/Fix/0.8.1-pre)
+## [Fix](http://www.nuget.org/packages/Fix/0.8.1-pre)
 
 ---
 
-### [Dyfrig](http://www.nuget.org/packages/Dyfrig/)
+## [Dyfrig](http://www.nuget.org/packages/Dyfrig/)
 
 ***
 
@@ -348,19 +348,23 @@ Specified type aliases removed, but `IAppBuilder` remains:
 
 ---
 
-### [SignalR](http://www.nuget.org/packages/Microsoft.AspNet.SignalR.Owin/)
+## [SignalR](http://www.nuget.org/packages/Microsoft.AspNet.SignalR.Owin/)
 
 ---
 
-### [NancyFx](http://nancyfx.org/)
+## [NancyFx](http://nancyfx.org/)
 
 ---
 
-### [ASP.NET Web API](http://www.nuget.org/packages/Microsoft.AspNet.WebApi.Owin/)
+## [ASP.NET Web API](http://www.nuget.org/packages/Microsoft.AspNet.WebApi.Owin/)
 
 ---
 
-### FubuMVC
+## FubuMVC
+
+---
+
+## Simple.Web
 
 ***
 
@@ -368,23 +372,23 @@ Specified type aliases removed, but `IAppBuilder` remains:
 
 ---
 
-### [System.Web](http://www.nuget.org/packages/Microsoft.Owin.Host.SystemWeb/)
+## [System.Web](http://www.nuget.org/packages/Microsoft.Owin.Host.SystemWeb/)
 
 ---
 
-### [HttpListener](http://www.nuget.org/packages/Microsoft.Owin.Host.HttpListener/)
+## [HttpListener](http://www.nuget.org/packages/Microsoft.Owin.Host.HttpListener/)
 
 ---
 
-### [IIS](http://www.nuget.org/packages/Microsoft.Owin.Host.IIS/1.0.0-alpha1)
+## [IIS](http://www.nuget.org/packages/Microsoft.Owin.Host.IIS/1.0.0-alpha1)
 
 ---
 
-### [Nowin](https://github.com/Bobris/Nowin)
+## [Nowin](https://github.com/Bobris/Nowin)
 
 ---
 
-### [Fracture](https://github.com/fractureio/fracture.http)
+## [Fracture](https://github.com/fractureio/fracture.http)
 
 ***
 
@@ -392,23 +396,23 @@ Specified type aliases removed, but `IAppBuilder` remains:
 
 ---
 
-### [CORS](http://www.nuget.org/packages/Microsoft.Owin.Cors/)
+## [CORS](http://www.nuget.org/packages/Microsoft.Owin.Cors/)
 
 ---
 
-### [Security](http://www.nuget.org/packages?q=owin+security)
+## [Security](http://www.nuget.org/packages?q=owin+security)
 
 ---
 
-### [Routing (Superscribe)](http://roysvork.wordpress.com/2013/09/22/why-you-shouldnt-use-a-web-framework-to-build-your-next-api/)
+## [Routing (Superscribe)](http://roysvork.wordpress.com/2013/09/22/why-you-shouldnt-use-a-web-framework-to-build-your-next-api/)
 
 ---
 
-### [Diagnostics](http://www.nuget.org/packages/Microsoft.Owin.Diagnostics/)
+## [Diagnostics](http://www.nuget.org/packages/Microsoft.Owin.Diagnostics/)
 
 ---
 
-### [Glimpse v2.0](https://github.com/Glimpse/Glimpse/pull/738)
+## [Glimpse v2.0](https://github.com/Glimpse/Glimpse/pull/738)
 
 ***
 
@@ -424,6 +428,8 @@ Specified type aliases removed, but `IAppBuilder` remains:
                .UseNancy();
         }
     }
+
+***
 
 # Looking Ahead
 
