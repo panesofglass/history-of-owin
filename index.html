@@ -513,19 +513,165 @@
 
 <h2>Adoption!</h2>
 
-<p>TODO: List middlewares available, including Web API, hosts, security, etc.</p>
+</section>
+
+<section>
+
+<section>
+
+<h2>Implementations</h2>
 
 </section>
 
 <section>
+
+<h3><a href="http://www.nuget.org/packages/Microsoft.Owin/">Katana (Microsoft.Owin)</a></h3>
+
+</section>
+
+<section>
+
+<h3><a href="http://www.nuget.org/packages/Fix/0.8.1-pre">Fix</a></h3>
+
+</section>
+
+<section>
+
+<h3><a href="http://www.nuget.org/packages/Dyfrig/">Dyfrig</a></h3>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
+<h2>Frameworks</h2>
+
+</section>
+
+<section>
+
+<h3><a href="http://www.nuget.org/packages/Microsoft.AspNet.SignalR.Owin/">SignalR</a></h3>
+
+</section>
+
+<section>
+
+<h3><a href="http://nancyfx.org/">NancyFx</a></h3>
+
+</section>
+
+<section>
+
+<h3><a href="http://www.nuget.org/packages/Microsoft.AspNet.WebApi.Owin/">ASP.NET Web API</a></h3>
+
+</section>
+
+<section>
+
+<h3>FubuMVC</h3>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
+<h2>Servers</h2>
+
+</section>
+
+<section>
+
+<h3><a href="http://www.nuget.org/packages/Microsoft.Owin.Host.SystemWeb/">System.Web</a></h3>
+
+</section>
+
+<section>
+
+<h3><a href="http://www.nuget.org/packages/Microsoft.Owin.Host.HttpListener/">HttpListener</a></h3>
+
+</section>
+
+<section>
+
+<h3><a href="http://www.nuget.org/packages/Microsoft.Owin.Host.IIS/1.0.0-alpha1">IIS</a></h3>
+
+</section>
+
+<section>
+
+<h3><a href="https://github.com/Bobris/Nowin">Nowin</a></h3>
+
+</section>
+
+<section>
+
+<h3><a href="https://github.com/fractureio/fracture.http">Fracture</a></h3>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
+<h2>Middleware</h2>
+
+</section>
+
+<section>
+
+<h3><a href="http://www.nuget.org/packages/Microsoft.Owin.Cors/">CORS</a></h3>
+
+</section>
+
+<section>
+
+<h3><a href="http://www.nuget.org/packages?q=owin+security">Security</a></h3>
+
+</section>
+
+<section>
+
+<h3><a href="http://roysvork.wordpress.com/2013/09/22/why-you-shouldnt-use-a-web-framework-to-build-your-next-api/">Routing (Superscribe)</a></h3>
+
+</section>
+
+<section>
+
+<h3><a href="http://www.nuget.org/packages/Microsoft.Owin.Diagnostics/">Diagnostics</a></h3>
+
+</section>
+
+<section>
+
+<h3><a href="https://github.com/Glimpse/Glimpse/pull/738">Glimpse v2.0</a></h3>
+
+</section>
+
+</section>
+
+<section>
+
+<h2>Put it All Together!</h2>
+
+<table class="pre"><tr><td><pre lang="cs"><span class="k">public</span> <span class="k">class</span> Startup {
+    <span class="k">public</span> <span class="k">void</span> Configuration(IAppBuilder app) {
+        app.Properties[<span class="s">"host.AppName"</span>] <span class="o">=</span> <span class="s">"composed app"</span>;
+        app.UseCors(Cors.CorsOptions.AllowAll)
+           .UseWebApi(<span class="k">new</span> HttpConfiguration())
+           .MapHubs(<span class="s">"signalr"</span>, <span class="k">new</span> HubConfiguration())
+           .UseNancy();
+    }
+}</pre></td></tr></table>
 
 <h1>Looking Ahead</h1>
-
-</section>
-
-<section>
-
-<h2>OWIN Management Committee</h2>
 
 </section>
 
@@ -539,9 +685,37 @@
 
 <section>
 
-<h2><a href="http://davidfowl.com/assembly-neutral-interfaces-implementation/">Assembly Neutral Interfaces</a></h2>
+<h2>BHAG Unlocked!</h2>
+
+<h3>MVC 6</h3>
 
 </section>
+
+<section>
+
+<h2><a href="http://davidfowl.com/assembly-neutral-interfaces-implementation/">Assembly Neutral Interfaces</a></h2>
+
+<h3>Time to revisit interface?</h3>
+
+</section>
+
+<section>
+
+<h2>Faster Servers!</h2>
+
+<ul>
+<li>Kestrel</li>
+<li>WebListener</li>
+<li>Helios (IIS without System.Web)</li>
+</ul>
+
+</section>
+
+</section>
+
+<section>
+
+<h2>OWIN Management Committee</h2>
 
 </section>
 
@@ -549,15 +723,19 @@
 
 <h2>Specification Updates</h2>
 
+<iframe src="https://github.com/owin/owin/issues"></iframe>
+
 </section>
 
 <section>
 
-<h1>We Want You!</h1>
+<h1>We Need Your Help!</h1>
 
 <p><a href="http://owin.org">http://owin.org</a></p>
 
 <p><a href="http://github.com/owin/owin">http://github.com/owin/owin</a></p>
+
+<p><a href="http://groups.google.com/group/net-http-abstractions">http://groups.google.com/group/net-http-abstractions</a></p>
 
 </section>
 
