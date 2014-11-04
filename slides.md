@@ -472,3 +472,308 @@ http://owin.org
 http://github.com/owin/owin
 
 http://groups.google.com/group/net-http-abstractions
+
+***
+
+# A Brief History of OWIN
+
+***
+
+## A Sing Along
+
+***
+
+### With Apologies to Rupert Holmes
+
+***
+
+### I was tired of my WebForms
+### and thought Sinatra was cool.
+
+***
+
+### I wrote my own library
+### then found that others had, too.
+
+* Boat (repo removed)
+* [Figment](http://bugsquash.blogspot.com/2010/08/figment-web-dsl-for-f.html)
+* [Frank](http://frankfs.net/)
+* [Kayak](http://web.archive.org/web/20101102133523/http://kayakhttp.com/)
+* [NancyFx](http://nancyfx.com)
+* [Nina](http://jondot.github.io/nina/) (no updates in 4 years)
+* [OpenRasta](http://openrasta.org/)
+* [Suave](http://suave.io/)
+* [WCF Web API](https://wcf.codeplex.com/)
+
+***
+
+### So I wrote a quick email
+### and asked them to collaborate.
+
+September 7, 2010
+
+> I’ve noticed a trend recently in projects each of us has worked/is working on and wondered if we might be willing to pool our resources....
+>
+> ...
+>
+> If you are interested in working together, please let me know.... I’m sure we could agree on a common platform for our efforts.
+
+- [Ryan Riley](https://twitter.com/panesofglass) to [Benjamin van der Veen](https://twitter.com/bvanderveen), [Mauricio Scheffer](https://twitter.com/mausch), and [Scott Koon](https://twitter.com/lazycoder)
+
+***
+
+### Within a month we had proposals
+### for framework / server abstractions
+
+September 27, 2010
+
+Benjamin van der Veen proposed the first set of interfaces:
+
+    [lang=cs]
+    public interface IHttpResponder {
+        IObservable<IHttpServerResponse> Respond(
+            IHttpServerRequest request,
+            IDictionary<string, object> context);
+    }
+    
+    public interface IHttpServerRequest {
+        HttpRequestLine RequestLine { get; }
+        IDictionary<string, string> Headers { get; }
+        IObservable<ArraySegment<byte>> GetBodyChunk();
+    }
+    
+    public interface IHttpServerResponse {
+        HttpStatusLine StatusLine { get; }
+        IDictionary<string, string> Headers { get; }
+        string BodyFile { get; }
+        IObservable<ArraySegment<byte>> GetBodyChunk();
+    }
+
+***
+
+### Then we ran into problems.
+### Turns out people have opinions.
+
+***
+
+### We worked out the details
+### and decided on a protocol definition.
+
+(Just like the cool kids)
+
+* [Rack](https://rack.github.io/) (Ruby)
+* [WSGI](http://wsgi.readthedocs.org/en/latest/#) (Python)
+
+***
+
+### Then we bought the domain name
+### and started writing the specs.
+
+***
+
+### And our big, audacious goal
+### was to run MVC on OWIN.
+
+***
+
+### We were blocked by factions:
+
+* OO (object-oriented)
+* FP (functional)
+* Dynamic
+
+***
+
+### We disagreed on dependencies
+### as well as interface types.
+
+***
+
+### So we used only delegates
+### as well as stuff from the FCL.
+
+***
+
+### And for the dynamic languages?
+### `IDictionary<string, object>`
+
+***
+
+### But how to represent async?
+### We had a much longer debate.
+
+***
+
+### `Stream`s were considered "too heavy";
+### `IObservable<T>` was too new.
+
+***
+
+### `Task` limited framework versions
+### to only .NET 4.0
+
+***
+
+### So in the end we decided
+### on the ["Delegate of Doom"](https://groups.google.com/d/msg/net-http-abstractions/rD18Hj1DwdQ/d_nrDyOLqcIJ)
+
+    [lang=cs]
+    public delegate void AppDelegate(
+        IDictionary<string, object> env,
+        ResultDelegate result,
+        Action<Exception> fault);
+    
+    public delegate void ResultDelegate(
+        string status,
+        IDictionary<string, IEnumerable<string>> headers,
+        BodyDelegate body);
+    
+    public delegate void BodyDelegate(
+        Func<ArraySegment<byte>, bool> write,
+        Func<Action, bool> flush,
+        Action<Exception> end,
+        CancellationToken cancellationToken);
+
+***
+
+### So now we had a solution,
+### but it created new problems.
+
+***
+
+### Whereas before we had prototypes,
+### Now all that work ceased.
+
+***
+
+### A helper library was proposed
+### and soon Gate was built.
+
+***
+
+### But what nobody noticed
+### was this was almost a dependency!
+
+![When your library dependency becomes a helper dependency](http://www.topito.com/wp-content/uploads/2013/01/code-34.gif)
+
+*from [The Reality of a Developer's Life - in GIFs, Of Course](http://server.dzone.com/articles/reality-developers-life-gifs)*
+
+***
+
+### And then along came SignalR.
+### We wanted to claim victory.
+
+***
+
+### We only had one problem:
+### ["Delegate of Doom" wouldn't work](https://groups.google.com/d/msg/net-http-abstractions/Cbvy2x27Few/Oor2UwA0W1wJ)
+
+***
+
+### Back to the drawing board we went:
+### Single- or double-tap?
+
+---
+
+## Double-tap
+
+* Nancy
+* OWIN
+* Rack
+* Web API
+
+---
+
+## Single-tap
+
+* ASP.NET MVC
+* Fubu MVC
+* node.js
+* Razor
+* SignalR
+
+---
+
+## Explained
+
+> There are ways to run a single-tap web framework on a double-tap owin pipeline, but they all boil down to buffering write data.... Increased complexity, more memory to hold the body until the fwk returns, and cpu spent copying that data… Plus for fully synchronous web frameworks it means every response body will be entirely buffered because there’s no way for the server to deliver the output stream until the initial call returns. ... it’s pretty extreme compared to just passing the server’s output stream and a response header idictionary in the original call.
+
+---
+
+## Explained (cont)
+
+> Running a double-tap framework on a single-tap pipeline by comparison is easy – the adapter just calls framework then calls its callback with the output stream.
+
+***
+
+### And came up with a solution,
+### just this simple delegate:
+
+    [lang=cs]
+    using AppFunc = Func<IDitionary<string, object>, Task>
+
+---
+
+## `Task`?
+
+***
+
+### Now we had real users
+### and started gaining adoption
+
+***
+
+### We knew its name in an instant;
+### we knew the F5 experience.
+
+***
+
+### It was our old friend ASP.NET,
+### and we said, "Ah! It's you."
+
+***
+
+### Then we laughed for a moment,
+### and we said, "We never knew ..."
+
+***
+
+### that you would go build vNext
+### and [Assembly Neutral Interfaces](http://davidfowl.com/assembly-neutral-interfaces-implementation/)
+
+***
+
+### and deliver MVC 6
+### on top of an OWIN framework.
+
+***
+
+### If you like writing middleware pipelines
+### with `.Use` and `.Map` extensions,
+
+***
+
+### Then you're the web framework we've looked for,
+### let us run cross platform!
+
+***
+
+## One more time?
+
+***
+
+## OWIN Management Committee
+
+***
+
+## [Specification Updates](https://github.com/owin/owin/issues)
+
+***
+
+# We Need Your Help!
+
+http://owin.org
+
+http://github.com/owin/owin
+
+http://groups.google.com/group/net-http-abstractions
