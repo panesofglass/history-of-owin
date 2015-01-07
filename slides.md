@@ -769,7 +769,7 @@ _(chorus)_
 
 ***
 
-### Then you're the framework we've looked for;
+### Then you're the framework we've looked for
 ### let's go build new web apps!
 
 ***
