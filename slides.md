@@ -481,6 +481,9 @@ http://groups.google.com/group/net-http-abstractions
 
 ## A Sing Along
 
+* Key changes noted at bottom (_verse n_ and _chorus_)
+* Don't sing words in parentheses
+
 ***
 
 ### With Apologies to Rupert Holmes
@@ -488,14 +491,14 @@ http://groups.google.com/group/net-http-abstractions
 ***
 
 ### I was tired of my WebForms
-### and thought Sinatra was cool.
+### and thought Sinatra was cool
 
 _(verse 1)_
 
 ***
 
 ### I wrote my own library
-### then found that others had, too.
+### then found that others had, too
 
 * [Frank](http://frankfs.net/) (mine)
 * Boat (repo removed)
@@ -510,7 +513,7 @@ _(verse 1)_
 ***
 
 ### So I wrote a quick email
-### and asked to collaborate.
+### and asked to collaborate
 
 September 7, 2010
 
@@ -524,12 +527,10 @@ September 7, 2010
 
 ***
 
-### Within a month we had submissions
-### for proposed interfaces
+### And within only the first month
+### Ben proposed interfaces:
 
 September 27, 2010
-
-Benjamin van der Veen proposed the first set of interfaces:
 
     [lang=cs]
     public interface IHttpResponder {
@@ -553,15 +554,15 @@ Benjamin van der Veen proposed the first set of interfaces:
 
 ***
 
-### Then we ran into problems:
-### people have opinions.
+### And then we ran into problems:
+### more people and opinions
 
 _(chorus)_
 
 ***
 
-### We worked out the details
-### and decided on a protocol.
+### We worked out all the conflicts,
+### choosing a protocol (approach)
 
 (Just like the cool kids)
 
@@ -570,13 +571,13 @@ _(chorus)_
 
 ***
 
-### So we bought the domain name
-### and started writing the specs.
+### We bought the OWIN domain name and
+### started writing the specs
 
 ***
 
-### We set an audacious goal
-### to run MVC on OWIN.
+### And set an audacious goal:
+### MVC on OWIN
 
 ***
 
@@ -590,40 +591,40 @@ _(verse 2)_
 
 ***
 
-### We disagreed on dependencies
-### as well as interface sig(nature)s.
+### Existing implementations
+### didn't want dependencies
 
 ***
 
-### So we used only delegates,
-### as well as FCL types.
+### We used only delegates,
+### and only FCL types
 
 ***
 
-### And for the dynamic languages?
+### And for dynamic languages?
 ### `IDictionary<string, object>`
 
 ***
 
 ### But how to represent async?
-### We had a longer debate.
+### We had a much longer debate
 
 _(chorus)_
 
 ***
 
 ### `Stream`s were considered "too heavy";
-### `IObservable<T>` was too new.
+### `IObservable<T>` too new
 
 ***
 
-### `Task` limited framework versions
-### to only .NET 4.0
+### `Task` required a framework version
+### above .NET 4.0
 
 ***
 
-### So in the end we decided
-### on the ["Delegate of Doom"](https://groups.google.com/d/msg/net-http-abstractions/rD18Hj1DwdQ/d_nrDyOLqcIJ)
+### So in the end we adopted
+### the ["Delegate of Doom"](https://groups.google.com/d/msg/net-http-abstractions/rD18Hj1DwdQ/d_nrDyOLqcIJ)
 
     [lang=cs]
     public delegate void AppDelegate(
@@ -645,44 +646,44 @@ _(chorus)_
 ***
 
 ### We finally had a solution,
-### but it created problems.
+### along with many problems
 
 _(verse 3)_
 
 ***
 
-### Whereas before we had prototypes,
-### now we had only a spec.
+### Before we had prototypes;
+### now we had only a spec
 
 ***
 
-### A helper library was proposed,
-### and soon Gate was built.
+### Devs had trouble implementing DoD,
+### so Ben and Lou built Gate
 
 ***
 
 ### But what nobody noticed
-### was now we had a dependency!
+### Gate _was_ a (helper) dependency!
 
 ![When your library dependency becomes a helper dependency](http://www.topito.com/wp-content/uploads/2013/01/code-34.gif)
 
-*from [The Reality of a Developer's Life - in GIFs, Of Course](http://server.dzone.com/articles/reality-developers-life-gifs)*
+_from [The Reality of a Developer's Life - in GIFs, Of Course](http://server.dzone.com/articles/reality-developers-life-gifs)_
 
 ***
 
-### And then along came SignalR.
-### We wanted to claim victory.
+### Then along came SignalR
+### We tried to claim victory
 
 _(chorus)_
 
 ***
 
 ### We only had one problem:
-### ["Delegate of Doom" wouldn't work](https://groups.google.com/d/msg/net-http-abstractions/Cbvy2x27Few/Oor2UwA0W1wJ)
+### ["Delegate of Doom" didn't work](https://groups.google.com/d/msg/net-http-abstractions/Cbvy2x27Few/Oor2UwA0W1wJ)
 
 ***
 
-### Back to the drawing board we went:
+### We went back to the drawing board:
 ### Single- or double-tap?
 
 ---
@@ -718,8 +719,8 @@ _(chorus)_
 
 ***
 
-### And came up with a solution,
-### just this simple delegate:
+### And proposed a solution,
+### a simple delegate:
 
     [lang=cs]
     using AppFunc = Func<IDitionary<string, object>, Task>
@@ -731,19 +732,19 @@ _(chorus)_
 ***
 
 ### Now we had real users
-### and started gaining adoption
+### and started gaining traction
 
 _(verse 4)_
 
 ***
 
 ### We knew its name in an instant;
-### we knew the F5 experience.
+### we knew the F5 experience
 
 ***
 
 ### It was our old friend ASP.NET,
-### and we said, "Ah! It's you."
+### and we said, "Ah! It's you"
 
 ***
 
@@ -752,15 +753,15 @@ _(verse 4)_
 
 ***
 
-### that you would go build vNext
-### and [Assembly Neutral Interfaces](http://davidfowl.com/assembly-neutral-interfaces-implementation/)
+### That you would build an OWIN framework
+### and name it Katana
 
 _(chorus)_
 
 ***
 
-### and deliver MVC 6
-### on top of an OWIN framework.
+### Then rebuild MVC6
+### with OWIN compat(ibility)
 
 ***
 
