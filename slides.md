@@ -606,7 +606,7 @@ _(verse 2)_
 ***
 
 ### But how to represent async?
-### We had a much longer debate.
+### We had a longer debate.
 
 _(chorus)_
 
