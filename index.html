@@ -757,6 +757,11 @@
 
 <h2>A Sing Along</h2>
 
+<ul>
+<li>Key changes noted at bottom (<em>verse n</em> and <em>chorus</em>)</li>
+<li>Don't sing words in parentheses</li>
+</ul>
+
 </section>
 
 <section>
@@ -769,7 +774,7 @@
 
 <h3>I was tired of my WebForms</h3>
 
-<h3>and thought Sinatra was cool.</h3>
+<h3>and thought Sinatra was cool</h3>
 
 <p><em>(verse 1)</em></p>
 
@@ -779,7 +784,7 @@
 
 <h3>I wrote my own library</h3>
 
-<h3>then found that others had, too.</h3>
+<h3>then found that others had, too</h3>
 
 <ul>
 <li><a href="http://frankfs.net/">Frank</a> (mine)</li>
@@ -799,7 +804,7 @@
 
 <h3>So I wrote a quick email</h3>
 
-<h3>and asked to collaborate.</h3>
+<h3>and asked to collaborate</h3>
 
 <p>September 7, 2010</p>
 
@@ -819,9 +824,9 @@
 
 <section>
 
-<h3>And within only one month</h3>
+<h3>And within only the first month</h3>
 
-<h3>Ben proposed interfaces</h3>
+<h3>Ben proposed interfaces:</h3>
 
 <p>September 27, 2010</p>
 
@@ -848,9 +853,9 @@
 
 <section>
 
-<h3>Then we ran into problems:</h3>
+<h3>And then we ran into problems:</h3>
 
-<h3>people have opinions.</h3>
+<h3>more people and opinions</h3>
 
 <p><em>(chorus)</em></p>
 
@@ -858,9 +863,9 @@
 
 <section>
 
-<h3>We worked out the details</h3>
+<h3>We worked out all the conflicts,</h3>
 
-<h3>and decided on a protocol.</h3>
+<h3>choosing a protocol (approach)</h3>
 
 <p>(Just like the cool kids)</p>
 
@@ -873,17 +878,17 @@
 
 <section>
 
-<h3>So we bought the domain name</h3>
+<h3>We bought the OWIN domain name and</h3>
 
-<h3>and started writing the specs.</h3>
+<h3>started writing the specs</h3>
 
 </section>
 
 <section>
 
-<h3>We set an audacious goal</h3>
+<h3>And set an audacious goal:</h3>
 
-<h3>to run MVC on OWIN.</h3>
+<h3>MVC on OWIN</h3>
 
 </section>
 
@@ -903,23 +908,23 @@
 
 <section>
 
-<h3>We disagreed on dependencies</h3>
+<h3>Existing implementations</h3>
 
-<h3>as well as interface sig(nature)s.</h3>
-
-</section>
-
-<section>
-
-<h3>So we used only delegates,</h3>
-
-<h3>as well as FCL types.</h3>
+<h3>didn't want any dependencies</h3>
 
 </section>
 
 <section>
 
-<h3>And for the dynamic languages?</h3>
+<h3>We used only delegates,</h3>
+
+<h3>and only FCL types</h3>
+
+</section>
+
+<section>
+
+<h3>And for dynamic languages?</h3>
 
 <h3><code>IDictionary&lt;string, object&gt;</code></h3>
 
@@ -929,7 +934,7 @@
 
 <h3>But how to represent async?</h3>
 
-<h3>We had a longer debate.</h3>
+<h3>We had a much longer debate</h3>
 
 <p><em>(chorus)</em></p>
 
@@ -939,23 +944,23 @@
 
 <h3><code>Stream</code>s were considered "too heavy";</h3>
 
-<h3><code>IObservable&lt;T&gt;</code> was too new.</h3>
+<h3><code>IObservable&lt;T&gt;</code> too new</h3>
 
 </section>
 
 <section>
 
-<h3><code>Task</code> limited framework versions</h3>
+<h3><code>Task</code> required a framework version</h3>
 
-<h3>to only .NET 4.0</h3>
+<h3>above .NET 4.0</h3>
 
 </section>
 
 <section>
 
-<h3>So in the end we decided</h3>
+<h3>So in the end we adopted</h3>
 
-<h3>on the <a href="https://groups.google.com/d/msg/net-http-abstractions/rD18Hj1DwdQ/d_nrDyOLqcIJ">"Delegate of Doom"</a></h3>
+<h3>the <a href="https://groups.google.com/d/msg/net-http-abstractions/rD18Hj1DwdQ/d_nrDyOLqcIJ">"Delegate of Doom"</a></h3>
 
 <table class="pre"><tr><td><pre lang="cs"><span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> AppDelegate(
     IDictionary&lt;<span class="k">string</span>, <span class="k">object</span>&gt; env,
@@ -979,7 +984,7 @@
 
 <h3>We finally had a solution,</h3>
 
-<h3>but it created problems.</h3>
+<h3>along with many problems</h3>
 
 <p><em>(verse 3)</em></p>
 
@@ -987,17 +992,17 @@
 
 <section>
 
-<h3>Whereas before we had prototypes,</h3>
+<h3>Before we had prototypes;</h3>
 
-<h3>now we had only a spec.</h3>
+<h3>now we had only a spec</h3>
 
 </section>
 
 <section>
 
-<h3>A helper library was proposed,</h3>
+<h3>Devs had trouble implementing DoD,</h3>
 
-<h3>and soon Gate was built.</h3>
+<h3>so Ben and Lou built Gate</h3>
 
 </section>
 
@@ -1005,7 +1010,7 @@
 
 <h3>But what nobody noticed</h3>
 
-<h3>was now we had a dependency!</h3>
+<h3>Gate <em>was</em> a (helper) dependency!</h3>
 
 <p><img src="http://www.topito.com/wp-content/uploads/2013/01/code-34.gif" alt="When your library dependency becomes a helper dependency" /></p>
 
@@ -1015,9 +1020,9 @@
 
 <section>
 
-<h3>And then along came SignalR.</h3>
+<h3>Then along came SignalR</h3>
 
-<h3>We wanted to claim victory.</h3>
+<h3>We tried to claim victory</h3>
 
 <p><em>(chorus)</em></p>
 
@@ -1027,7 +1032,7 @@
 
 <h3>We only had one problem:</h3>
 
-<h3><a href="https://groups.google.com/d/msg/net-http-abstractions/Cbvy2x27Few/Oor2UwA0W1wJ">"Delegate of Doom" wouldn't work</a></h3>
+<h3><a href="https://groups.google.com/d/msg/net-http-abstractions/Cbvy2x27Few/Oor2UwA0W1wJ">"Delegate of Doom" didn't work</a></h3>
 
 </section>
 
@@ -1035,7 +1040,7 @@
 
 <section>
 
-<h3>Back to the drawing board we went:</h3>
+<h3>We went back to the drawing board:</h3>
 
 <h3>Single- or double-tap?</h3>
 
@@ -1094,9 +1099,9 @@
 
 <section>
 
-<h3>And came up with a solution,</h3>
+<h3>And proposed a solution,</h3>
 
-<h3>just this simple delegate:</h3>
+<h3>a simple delegate:</h3>
 
 <table class="pre"><tr><td><pre lang="cs"><span class="k">using</span> AppFunc <span class="o">=</span> Func&lt;IDitionary&lt;<span class="k">string</span>, <span class="k">object</span>&gt;, Task&gt;</pre></td></tr></table>
 
@@ -1114,7 +1119,7 @@
 
 <h3>Now we had real users</h3>
 
-<h3>and started gaining adoption</h3>
+<h3>and started gaining traction</h3>
 
 <p><em>(verse 4)</em></p>
 
@@ -1124,7 +1129,7 @@
 
 <h3>We knew its name in an instant;</h3>
 
-<h3>we knew the F5 experience.</h3>
+<h3>we knew the F5 experience</h3>
 
 </section>
 
@@ -1132,7 +1137,7 @@
 
 <h3>It was our old friend ASP.NET,</h3>
 
-<h3>and we said, "Ah! It's you."</h3>
+<h3>and we said, "Ah! It's you"</h3>
 
 </section>
 
@@ -1146,9 +1151,9 @@
 
 <section>
 
-<h3>that you would go build vNext</h3>
+<h3>That you would build an OWIN framework</h3>
 
-<h3>and <a href="http://davidfowl.com/assembly-neutral-interfaces-implementation/">Assembly Neutral Interfaces</a></h3>
+<h3>and name it Katana</h3>
 
 <p><em>(chorus)</em></p>
 
@@ -1156,9 +1161,9 @@
 
 <section>
 
-<h3>and deliver MVC 6</h3>
+<h3>Then rebuild MVC6</h3>
 
-<h3>on top of an OWIN framework.</h3>
+<h3>with OWIN compat(ibility)</h3>
 
 </section>
 
