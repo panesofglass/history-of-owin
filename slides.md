@@ -465,7 +465,7 @@ Specified type aliases removed, but `IAppBuilder` remains:
 
 ***
 
-# We Need Your Help!
+# Join Us!
 
 http://owin.org
 
@@ -490,14 +490,16 @@ http://groups.google.com/group/net-http-abstractions
 ### I was tired of my WebForms
 ### and thought Sinatra was cool.
 
+_(verse 1)_
+
 ***
 
 ### I wrote my own library
 ### then found that others had, too.
 
+* [Frank](http://frankfs.net/) (mine)
 * Boat (repo removed)
 * [Figment](http://bugsquash.blogspot.com/2010/08/figment-web-dsl-for-f.html)
-* [Frank](http://frankfs.net/)
 * [Kayak](http://web.archive.org/web/20101102133523/http://kayakhttp.com/)
 * [NancyFx](http://nancyfx.com)
 * [Nina](http://jondot.github.io/nina/) (no updates in 4 years)
@@ -508,7 +510,7 @@ http://groups.google.com/group/net-http-abstractions
 ***
 
 ### So I wrote a quick email
-### and asked them to collaborate.
+### and asked to collaborate.
 
 September 7, 2010
 
@@ -522,8 +524,8 @@ September 7, 2010
 
 ***
 
-### Within a month we had proposals
-### for framework / server abstractions
+### Within a month we had submissions
+### for proposed interfaces
 
 September 27, 2010
 
@@ -551,13 +553,15 @@ Benjamin van der Veen proposed the first set of interfaces:
 
 ***
 
-### Then we ran into problems.
-### Turns out people have opinions.
+### Then we ran into problems:
+### people have opinions.
+
+_(chorus)_
 
 ***
 
 ### We worked out the details
-### and decided on a protocol definition.
+### and decided on a protocol.
 
 (Just like the cool kids)
 
@@ -566,13 +570,13 @@ Benjamin van der Veen proposed the first set of interfaces:
 
 ***
 
-### Then we bought the domain name
+### So we bought the domain name
 ### and started writing the specs.
 
 ***
 
-### And our big, audacious goal
-### was to run MVC on OWIN.
+### We set an audacious goal
+### to run MVC on OWIN.
 
 ***
 
@@ -582,15 +586,17 @@ Benjamin van der Veen proposed the first set of interfaces:
 * FP (functional)
 * Dynamic
 
+_(verse 2)_
+
 ***
 
 ### We disagreed on dependencies
-### as well as interface types.
+### as well as interface sig(nature)s.
 
 ***
 
-### So we used only delegates
-### as well as stuff from the FCL.
+### So we used only delegates,
+### as well as FCL types.
 
 ***
 
@@ -601,6 +607,8 @@ Benjamin van der Veen proposed the first set of interfaces:
 
 ### But how to represent async?
 ### We had a much longer debate.
+
+_(chorus)_
 
 ***
 
@@ -636,23 +644,25 @@ Benjamin van der Veen proposed the first set of interfaces:
 
 ***
 
-### So now we had a solution,
-### but it created new problems.
+### We finally had a solution,
+### but it created problems.
+
+_(verse 3)_
 
 ***
 
 ### Whereas before we had prototypes,
-### Now all that work ceased.
+### now we had only a spec.
 
 ***
 
-### A helper library was proposed
+### A helper library was proposed,
 ### and soon Gate was built.
 
 ***
 
 ### But what nobody noticed
-### was this was almost a dependency!
+### was now we had a dependency!
 
 ![When your library dependency becomes a helper dependency](http://www.topito.com/wp-content/uploads/2013/01/code-34.gif)
 
@@ -662,6 +672,8 @@ Benjamin van der Veen proposed the first set of interfaces:
 
 ### And then along came SignalR.
 ### We wanted to claim victory.
+
+_(chorus)_
 
 ***
 
@@ -721,6 +733,8 @@ Benjamin van der Veen proposed the first set of interfaces:
 ### Now we had real users
 ### and started gaining adoption
 
+_(verse 4)_
+
 ***
 
 ### We knew its name in an instant;
@@ -740,6 +754,8 @@ Benjamin van der Veen proposed the first set of interfaces:
 
 ### that you would go build vNext
 ### and [Assembly Neutral Interfaces](http://davidfowl.com/assembly-neutral-interfaces-implementation/)
+
+_(chorus)_
 
 ***
 
@@ -770,7 +786,7 @@ Benjamin van der Veen proposed the first set of interfaces:
 
 ***
 
-# We Need Your Help!
+# Join Us!
 
 http://owin.org
 
