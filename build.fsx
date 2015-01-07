@@ -50,8 +50,8 @@ Target "Publish" (fun _ ->
 Target "All" DoNothing
 
 "Clean"
-  =?> ("Generate",isLocalBuild && not isMono)
-  =?> ("Publish",isLocalBuild && not isMono)
-  ==> "All"
+==> "Generate"
+==> "Publish"
+==> "All"
 
 RunTargetOrDefault "All"
