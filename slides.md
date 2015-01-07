@@ -486,11 +486,13 @@ http://groups.google.com/group/net-http-abstractions
 
 ***
 
-### With Apologies to Rupert Holmes
+### To the Tune of "Escape"
+
+(with apologies to Rupert Holmes)
 
 ***
 
-### I was tired of my WebForms
+### I was tired of my Web Forms
 ### and thought Sinatra was cool
 
 _(verse 1)_
@@ -571,8 +573,8 @@ _(chorus)_
 
 ***
 
-### We bought the OWIN domain name and
-### started writing the specs
+### We bought the OWIN domain name
+### and started writing the specs
 
 ***
 
@@ -607,7 +609,7 @@ _(verse 2)_
 ***
 
 ### But how to represent async?
-### We had a much longer debate
+### We had a longer debate
 
 _(chorus)_
 
@@ -652,12 +654,12 @@ _(verse 3)_
 
 ***
 
-### Before we had prototypes;
-### now we had only a spec
+### Where before we had prototypes;
+### now we had only the spec
 
 ***
 
-### Devs had trouble implementing DoD,
+### Devs had trouble with DoD,
 ### so Ben and Lou built Gate
 
 ***
@@ -753,15 +755,15 @@ _(verse 4)_
 
 ***
 
-### That you would build an OWIN framework
-### and name it Katana
+### That you would unlock our big goal
+### with MVC6
 
 _(chorus)_
 
 ***
 
-### Then rebuild MVC6
-### with OWIN compat(ibility)
+### And build the Kestrel web server
+### that could run on Linux and Mac
 
 ***
 
