@@ -477,6 +477,8 @@ http://groups.google.com/group/net-http-abstractions
 
 # A Brief History of OWIN
 
+## _(Abridged)_
+
 ***
 
 ## A Sing Along
