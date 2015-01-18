@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Freya</title>
-    <meta name="description" content="A functional-first web stack in F#">
-    <meta name="author" content="Andrew Cherry (@kolektiv) and Ryan Riley (@panesofglass)">
+    <title>A Brief History of OWIN</title>
+    <meta name="description" content="You may have noticed some strange changes in your ASP.NET project templates, especially with respect to security. You may have noticed some similar changes in the presentations about ASP.NET vNext. Those changes are related to a specification for building composable .NET web applications, and it's name is OWIN. There's a lot of confusion surrounding the Open Web Interface for .NET, or OWIN, and how it relates to Microsoft's web platform. How and why did OWIN come about? Why should you care? How can you help? Find answers to all your questions, and learn some of the more curious twists and turns of the OWIN story straight from the source.">
+    <meta name="author" content="Ryan Riley">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -39,18 +39,1181 @@
         
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
-            <section >
+            <section>
 
-<section >
+<h1>A Brief History of OWIN</h1>
 
-<h1>Freya</h1>
-
-<h2>A functional-first web stack in F#</h2>
-
-<p>Andrew Cherry (@kolektiv)
-Ryan Riley (@panesofglass)</p>
+<h2>Open Web Interface for .NET</h2>
 
 </section>
+
+<section>
+
+<h2>Ryan Riley</h2>
+
+<img src="images/tachyus.png" alt="Tachyus logo" style="background-color: #fff; display: block; margin: 10px auto;" />
+
+<ul>
+<li>Lead <a href="http://c4fsharp.net/">Community for F#</a></li>
+<li>Microsoft Visual F# MVP</li>
+<li>ASPInsider</li>
+<li><a href="http://owin.org/">OWIN</a> Management Committee</li>
+</ul>
+
+</section>
+
+<section>
+
+<h1>Why OWIN?</h1>
+
+</section>
+
+<section>
+
+<section>
+
+<h2>Problem: Desire for Fast and Light-weight Frameworks and Servers</h2>
+
+<ul>
+<li>ASP.NET was "too heavy"</li>
+<li>IIS was "too slow"</li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>Solutions</h2>
+
+<ul>
+<li>Boat (repo removed)</li>
+<li><a href="http://bugsquash.blogspot.com/2010/08/figment-web-dsl-for-f.html">Figment</a></li>
+<li><a href="http://frankfs.net/">Frank</a></li>
+<li><a href="http://web.archive.org/web/20101102133523/http://kayakhttp.com/">Kayak</a></li>
+<li><a href="http://nancyfx.com">NancyFx</a></li>
+<li><a href="http://jondot.github.io/nina/">Nina</a> (no updates in 4 years)</li>
+<li><a href="http://openrasta.org/">OpenRasta</a></li>
+<li><a href="http://suave.io/">Suave</a></li>
+<li><a href="https://wcf.codeplex.com/">WCF Web API</a></li>
+</ul>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
+<h2>Problem: Repetition</h2>
+
+<ul>
+<li><a href="http://www.sinatrarb.com/">Sinatra</a> clones</li>
+<li>ASP.NET adapters</li>
+<li>Self-host adapters (esp. <code>HttpListener</code>)</li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>Solution: Collaborate</h2>
+
+</section>
+
+<section>
+
+<h2>September 7, 2010</h2>
+
+<blockquote>
+  <p>I’ve noticed a trend recently in projects each of us has worked/is working on and wondered if we might be willing to pool our resources....</p>
+
+  <p>...</p>
+
+  <p>If you are interested in working together, please let me know.... I’m sure we could agree on a common platform for our efforts.</p>
+</blockquote>
+
+<ul>
+<li><a href="https://twitter.com/panesofglass">Ryan Riley</a> to <a href="https://twitter.com/bvanderveen">Benjamin van der Veen</a>, <a href="https://twitter.com/mausch">Mauricio Scheffer</a>, and <a href="https://twitter.com/lazycoder">Scott Koon</a></li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>September 27, 2010</h2>
+
+<p>Benjamin van der Veen proposed the first set of interfaces:</p>
+
+<table class="pre"><tr><td><pre lang="cs"><span class="k">public</span> <span class="k">interface</span> IHttpResponder {
+    IObservable&lt;IHttpServerResponse&gt; Respond(
+        IHttpServerRequest request,
+        IDictionary&lt;<span class="k">string</span>, <span class="k">object</span>&gt; context);
+}
+
+<span class="k">public</span> <span class="k">interface</span> IHttpServerRequest {
+    HttpRequestLine RequestLine { get; }
+    IDictionary&lt;<span class="k">string</span>, <span class="k">string</span>&gt; Headers { get; }
+    IObservable&lt;ArraySegment&lt;<span class="k">byte</span>&gt;<span class="o">&gt;</span> GetBodyChunk();
+}
+
+<span class="k">public</span> <span class="k">interface</span> IHttpServerResponse {
+    HttpStatusLine StatusLine { get; }
+    IDictionary&lt;<span class="k">string</span>, <span class="k">string</span>&gt; Headers { get; }
+    <span class="k">string</span> BodyFile { get; }
+    IObservable&lt;ArraySegment&lt;<span class="k">byte</span>&gt;<span class="o">&gt;</span> GetBodyChunk();
+}</pre></td></tr></table>
+
+</section>
+
+<section>
+
+<h2>November 29, 2010</h2>
+
+<p>Scott Koon creates <a href="https://groups.googe.com/forum/#!forum/net-http-abstractions">.NET HTTP Abstractions</a></p>
+
+<p><a href="https://groups.google.com/forum/#!forum/net-http-abstractions">https://groups.google.com/forum/#!forum/net-http-abstractions</a></p>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
+<h2>Problem: Opinions and Existing Implementations</h2>
+
+</section>
+
+<section>
+
+<h2>Solution: Define a Common Interface</h2>
+
+<ul>
+<li><a href="https://rack.github.io/">Rack</a> (Ruby)</li>
+<li><a href="http://wsgi.readthedocs.org/en/latest/#">WSGI</a> (Python)</li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>Consensus to share server wrappers</h2>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
+<h1>Progress!</h1>
+
+</section>
+
+<section>
+
+<h2>Name: Open Web Interface for .NET (OWIN)</h2>
+
+</section>
+
+<section>
+
+<h2>Specification writing begins</h2>
+
+</section>
+
+<section>
+
+<h2>BHAG: Run ASP.NET MVC on OWIN</h2>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
+<h2>Problem: Trouble in Paradise</h2>
+
+</section>
+
+<section>
+
+<h2>Troublemakers</h2>
+
+<ul>
+<li>Object-oriented faction</li>
+<li>Functional faction</li>
+<li>Dynamic faction</li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>Disagreement on library dependency</h2>
+
+</section>
+
+<section>
+
+<h2>Disagreement on interface types</h2>
+
+</section>
+
+<section>
+
+<h2>Solution : No Dependency Required</h2>
+
+</section>
+
+<section>
+
+<h2>Solution : Use Delegates and FCL Types</h2>
+
+</section>
+
+<section>
+
+<h2>What about the Iron- Languages?</h2>
+
+<p><code>IDictionary&lt;string, object&gt;</code> to the rescue!</p>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
+<h2>Problem: How to Represent Async Access to Message Body?</h2>
+
+</section>
+
+<section>
+
+<h2>Proposed Solution #1: <code>Stream</code></h2>
+
+<ul>
+<li>Rejected</li>
+<li>Considered "too heavy"</li>
+<li>Async access considered "too slow"</li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>Proposed Solution #2: <code>IObservable&lt;T&gt;</code></h2>
+
+<ul>
+<li>Rejected</li>
+<li>Back-pressure a concern</li>
+<li>Required library dependency for .NET 3.5</li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>Proposed Solution #3: <code>Task&lt;T&gt;</code></h2>
+
+<ul>
+<li>Rejected</li>
+<li>Required .NET 4.0</li>
+<li>Some libraries had existing .NET 3.5 base</li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>Proposed Soluion #4: <a href="https://groups.google.com/d/msg/net-http-abstractions/rD18Hj1DwdQ/d_nrDyOLqcIJ">"Delegate of Doom"</a></h2>
+
+<p>Accepted!</p>
+
+<table class="pre"><tr><td><pre lang="cs"><span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> AppDelegate(
+    IDictionary&lt;<span class="k">string</span>, <span class="k">object</span>&gt; env,
+    ResultDelegate result,
+    Action&lt;Exception&gt; fault);
+
+<span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> ResultDelegate(
+    <span class="k">string</span> status,
+    IDictionary&lt;<span class="k">string</span>, IEnumerable&lt;<span class="k">string</span>&gt;<span class="o">&gt;</span> headers,
+    BodyDelegate body);
+
+<span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> BodyDelegate(
+    Func&lt;ArraySegment&lt;<span class="k">byte</span>&gt;, <span class="k">bool</span>&gt; write,
+    Func&lt;Action, <span class="k">bool</span>&gt; flush,
+    Action&lt;Exception&gt; end,
+    CancellationToken cancellationToken);</pre></td></tr></table>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
+<h2>Problem: Implementations Cease</h2>
+
+<p>"Delegate of Doom" proved too difficult for most</p>
+
+</section>
+
+<section>
+
+<h2>Solution: Gate Helper Library</h2>
+
+</section>
+
+<section>
+
+<h2>???</h2>
+
+<p><img src="http://www.topito.com/wp-content/uploads/2013/01/code-34.gif" alt="When your library dependency becomes a helper dependency" /></p>
+
+<p><em>from <a href="http://server.dzone.com/articles/reality-developers-life-gifs">The Reality of a Developer's Life - in GIFs, Of Course</a></em></p>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
+<h1>WIN!</h1>
+
+<h2>SignalR</h2>
+
+</section>
+
+<section>
+
+<h2>Problem: <a href="https://groups.google.com/d/msg/net-http-abstractions/Cbvy2x27Few/Oor2UwA0W1wJ">"Delegate of Doom" doesn't work for SignalR</a></h2>
+
+</section>
+
+<section>
+
+<h2>Double-tap</h2>
+
+<ul>
+<li>Nancy</li>
+<li>OWIN</li>
+<li>Rack</li>
+<li>Web API</li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>Single-tap</h2>
+
+<ul>
+<li>ASP.NET MVC</li>
+<li>Fubu MVC</li>
+<li>node.js</li>
+<li>Razor</li>
+<li>SignalR</li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>Explained</h2>
+
+<blockquote>
+  <p>There are ways to run a single-tap web framework on a double-tap owin pipeline, but they all boil down to buffering write data.... Increased complexity, more memory to hold the body until the fwk returns, and cpu spent copying that data… Plus for fully synchronous web frameworks it means every response body will be entirely buffered because there’s no way for the server to deliver the output stream until the initial call returns. ... it’s pretty extreme compared to just passing the server’s output stream and a response header idictionary in the original call.</p>
+</blockquote>
+
+</section>
+
+<section>
+
+<h2>Explained (cont)</h2>
+
+<blockquote>
+  <p>Running a double-tap framework on a single-tap pipeline by comparison is easy – the adapter just calls framework then calls its callback with the output stream.</p>
+</blockquote>
+
+</section>
+
+<section>
+
+<h2>Solution</h2>
+
+<table class="pre"><tr><td><pre lang="cs"><span class="k">using</span> AppFunc <span class="o">=</span> Func&lt;IDitionary&lt;<span class="k">string</span>, <span class="k">object</span>&gt;, Task&gt;</pre></td></tr></table>
+
+</section>
+
+<section>
+
+<h2><code>Task</code>?</h2>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
+<h1>Push to 1.0</h1>
+
+</section>
+
+<section>
+
+<h2>Microsoft adopts OWIN as Katana</h2>
+
+</section>
+
+<section>
+
+<h2>New Implementations</h2>
+
+<ul>
+<li><a href="https://github.com/FixProject/Fix">Fix</a></li>
+<li><a href="https://github.com/panesofglass/dyfrig">Dyfrig</a></li>
+<li><a href="https://github.com/prabirshrestha/simple-owin">SimpleOwin</a></li>
+<li><a href="https://github.com/EddieGarmon/Simple.Owin">Simple.Owin</a></li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>owin.dll</h2>
+
+<p>Specified type aliases removed, but <code>IAppBuilder</code> remains:</p>
+
+<table class="pre"><tr><td><pre lang="cs"><span class="k">public</span> <span class="k">interface</span> IAppBuilder
+{
+    IDictionary&lt;<span class="k">string</span>, <span class="k">object</span>&gt; Properties { get; }
+    IAppBuilder Use(<span class="k">object</span> middleware, <span class="k">params</span> <span class="k">object</span>[] args);
+    <span class="k">object</span> Build(Type returnType);
+    IAppBuilder New();
+}</pre></td></tr></table>
+
+</section>
+
+</section>
+
+<section>
+
+<h2>Adoption!</h2>
+
+</section>
+
+<section>
+
+<section>
+
+<h2>Implementations</h2>
+
+</section>
+
+<section>
+
+<h2><a href="http://www.nuget.org/packages/Microsoft.Owin/">Katana (Microsoft.Owin)</a></h2>
+
+</section>
+
+<section>
+
+<h2><a href="http://www.nuget.org/packages/Fix/0.8.1-pre">Fix</a></h2>
+
+</section>
+
+<section>
+
+<h2><a href="http://www.nuget.org/packages/Dyfrig/">Dyfrig</a></h2>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
+<h2>Frameworks</h2>
+
+</section>
+
+<section>
+
+<h2><a href="http://www.nuget.org/packages/Microsoft.AspNet.SignalR.Owin/">SignalR</a></h2>
+
+</section>
+
+<section>
+
+<h2><a href="http://nancyfx.org/">NancyFx</a></h2>
+
+</section>
+
+<section>
+
+<h2><a href="http://www.nuget.org/packages/Microsoft.AspNet.WebApi.Owin/">ASP.NET Web API</a></h2>
+
+</section>
+
+<section>
+
+<h2>FubuMVC</h2>
+
+</section>
+
+<section>
+
+<h2>Simple.Web</h2>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
+<h2>Servers</h2>
+
+</section>
+
+<section>
+
+<h2><a href="http://www.nuget.org/packages/Microsoft.Owin.Host.SystemWeb/">System.Web</a></h2>
+
+</section>
+
+<section>
+
+<h2><a href="http://www.nuget.org/packages/Microsoft.Owin.Host.HttpListener/">HttpListener</a></h2>
+
+</section>
+
+<section>
+
+<h2><a href="http://www.nuget.org/packages/Microsoft.Owin.Host.IIS/1.0.0-alpha1">IIS</a></h2>
+
+</section>
+
+<section>
+
+<h2><a href="https://github.com/Bobris/Nowin">Nowin</a></h2>
+
+</section>
+
+<section>
+
+<h2><a href="https://github.com/fractureio/fracture.http">Fracture</a></h2>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
+<h2>Middleware</h2>
+
+</section>
+
+<section>
+
+<h2><a href="http://www.nuget.org/packages/Microsoft.Owin.Cors/">CORS</a></h2>
+
+</section>
+
+<section>
+
+<h2><a href="http://www.nuget.org/packages?q=owin+security">Security</a></h2>
+
+</section>
+
+<section>
+
+<h2><a href="http://roysvork.wordpress.com/2013/09/22/why-you-shouldnt-use-a-web-framework-to-build-your-next-api/">Routing (Superscribe)</a></h2>
+
+</section>
+
+<section>
+
+<h2><a href="http://www.nuget.org/packages/Microsoft.Owin.Diagnostics/">Diagnostics</a></h2>
+
+</section>
+
+<section>
+
+<h2><a href="https://github.com/Glimpse/Glimpse/pull/738">Glimpse v2.0</a></h2>
+
+</section>
+
+</section>
+
+<section>
+
+<h2>Put it All Together!</h2>
+
+<table class="pre"><tr><td><pre lang="cs"><span class="k">public</span> <span class="k">class</span> Startup {
+    <span class="k">public</span> <span class="k">void</span> Configuration(IAppBuilder app) {
+        app.Properties[<span class="s">"host.AppName"</span>] <span class="o">=</span> <span class="s">"composed app"</span>;
+        app.UseCors(Cors.CorsOptions.AllowAll)
+           .UseWebApi(<span class="k">new</span> HttpConfiguration())
+           .MapHubs(<span class="s">"signalr"</span>, <span class="k">new</span> HubConfiguration())
+           .UseNancy();
+    }
+}</pre></td></tr></table>
+
+</section>
+
+<section>
+
+<h1>Looking Ahead</h1>
+
+</section>
+
+<section>
+
+<section>
+
+<h2>ASP.NET vNext</h2>
+
+</section>
+
+<section>
+
+<h2>BHAG Unlocked!</h2>
+
+<h3>MVC 6</h3>
+
+</section>
+
+<section>
+
+<h2><a href="http://davidfowl.com/assembly-neutral-interfaces-implementation/">Assembly Neutral Interfaces</a></h2>
+
+<h3>Time to revisit interface?</h3>
+
+</section>
+
+<section>
+
+<h2>Faster Servers!</h2>
+
+<ul>
+<li>Kestrel</li>
+<li>WebListener</li>
+<li>Helios (IIS without System.Web)</li>
+</ul>
+
+</section>
+
+</section>
+
+<section>
+
+<h2>OWIN Management Committee</h2>
+
+</section>
+
+<section>
+
+<h2><a href="https://github.com/owin/owin/issues">Specification Updates</a></h2>
+
+</section>
+
+<section>
+
+<h1>Join Us!</h1>
+
+<p><a href="http://owin.org">http://owin.org</a></p>
+
+<p><a href="http://github.com/owin/owin">http://github.com/owin/owin</a></p>
+
+<p><a href="http://groups.google.com/group/net-http-abstractions">http://groups.google.com/group/net-http-abstractions</a></p>
+
+</section>
+
+<section>
+
+<h1>A Brief History of OWIN</h1>
+
+<h2><em>(Abridged)</em></h2>
+
+</section>
+
+<section>
+
+<h2>A Sing Along</h2>
+
+<ul>
+<li>Key changes noted at bottom (<em>verse n</em> and <em>chorus</em>)</li>
+<li>Don't sing words in parentheses</li>
+</ul>
+
+</section>
+
+<section>
+
+<h3>To the Tune of "Escape"</h3>
+
+<p>(with apologies to Rupert Holmes)</p>
+
+</section>
+
+<section>
+
+<h3>I was tired of my Web Forms</h3>
+
+<h3>and thought Sinatra was cool</h3>
+
+<p><em>(verse 1)</em></p>
+
+</section>
+
+<section>
+
+<h3>I wrote my own library</h3>
+
+<h3>then found that others had, too</h3>
+
+<ul>
+<li><a href="http://frankfs.net/">Frank</a> (mine)</li>
+<li>Boat (repo removed)</li>
+<li><a href="http://bugsquash.blogspot.com/2010/08/figment-web-dsl-for-f.html">Figment</a></li>
+<li><a href="http://web.archive.org/web/20101102133523/http://kayakhttp.com/">Kayak</a></li>
+<li><a href="http://nancyfx.com">NancyFx</a></li>
+<li><a href="http://jondot.github.io/nina/">Nina</a> (no updates in 4 years)</li>
+<li><a href="http://openrasta.org/">OpenRasta</a></li>
+<li><a href="http://suave.io/">Suave</a></li>
+<li><a href="https://wcf.codeplex.com/">WCF Web API</a></li>
+</ul>
+
+</section>
+
+<section>
+
+<h3>So I wrote a quick email</h3>
+
+<h3>and asked to collaborate</h3>
+
+<p>September 7, 2010</p>
+
+<blockquote>
+  <p>I’ve noticed a trend recently in projects each of us has worked/is working on and wondered if we might be willing to pool our resources....</p>
+
+  <p>...</p>
+
+  <p>If you are interested in working together, please let me know.... I’m sure we could agree on a common platform for our efforts.</p>
+</blockquote>
+
+<ul>
+<li><a href="https://twitter.com/panesofglass">Ryan Riley</a> to <a href="https://twitter.com/bvanderveen">Benjamin van der Veen</a>, <a href="https://twitter.com/mausch">Mauricio Scheffer</a>, and <a href="https://twitter.com/lazycoder">Scott Koon</a></li>
+</ul>
+
+</section>
+
+<section>
+
+<h3>And within only the first month</h3>
+
+<h3>Ben proposed interfaces:</h3>
+
+<p>September 27, 2010</p>
+
+<table class="pre"><tr><td><pre lang="cs"><span class="k">public</span> <span class="k">interface</span> IHttpResponder {
+    IObservable&lt;IHttpServerResponse&gt; Respond(
+        IHttpServerRequest request,
+        IDictionary&lt;<span class="k">string</span>, <span class="k">object</span>&gt; context);
+}
+
+<span class="k">public</span> <span class="k">interface</span> IHttpServerRequest {
+    HttpRequestLine RequestLine { get; }
+    IDictionary&lt;<span class="k">string</span>, <span class="k">string</span>&gt; Headers { get; }
+    IObservable&lt;ArraySegment&lt;<span class="k">byte</span>&gt;<span class="o">&gt;</span> GetBodyChunk();
+}
+
+<span class="k">public</span> <span class="k">interface</span> IHttpServerResponse {
+    HttpStatusLine StatusLine { get; }
+    IDictionary&lt;<span class="k">string</span>, <span class="k">string</span>&gt; Headers { get; }
+    <span class="k">string</span> BodyFile { get; }
+    IObservable&lt;ArraySegment&lt;<span class="k">byte</span>&gt;<span class="o">&gt;</span> GetBodyChunk();
+}</pre></td></tr></table>
+
+</section>
+
+<section>
+
+<h3>And then we ran into problems:</h3>
+
+<h3>more people and opinions</h3>
+
+<p><em>(chorus)</em></p>
+
+</section>
+
+<section>
+
+<h3>We worked out all the conflicts,</h3>
+
+<h3>choosing a protocol (approach)</h3>
+
+<p>(Just like the cool kids)</p>
+
+<ul>
+<li><a href="https://rack.github.io/">Rack</a> (Ruby)</li>
+<li><a href="http://wsgi.readthedocs.org/en/latest/#">WSGI</a> (Python)</li>
+</ul>
+
+</section>
+
+<section>
+
+<h3>We bought the OWIN domain name</h3>
+
+<h3>and started writing the specs</h3>
+
+</section>
+
+<section>
+
+<h3>And set an audacious goal:</h3>
+
+<h3>MVC on OWIN</h3>
+
+</section>
+
+<section>
+
+<h3>We were blocked by factions:</h3>
+
+<ul>
+<li>OO (object-oriented)</li>
+<li>FP (functional)</li>
+<li>Dynamic</li>
+</ul>
+
+<p><em>(verse 2)</em></p>
+
+</section>
+
+<section>
+
+<h3>Existing implementations</h3>
+
+<h3>didn't want dependencies</h3>
+
+</section>
+
+<section>
+
+<h3>We used only delegates,</h3>
+
+<h3>and only FCL types</h3>
+
+</section>
+
+<section>
+
+<h3>And for dynamic languages?</h3>
+
+<h3><code>IDictionary&lt;string, object&gt;</code></h3>
+
+</section>
+
+<section>
+
+<h3>But how to represent async?</h3>
+
+<h3>We had a longer debate</h3>
+
+<p><em>(chorus)</em></p>
+
+</section>
+
+<section>
+
+<h3><code>Stream</code>s were considered "too heavy";</h3>
+
+<h3><code>IObservable&lt;T&gt;</code> too new</h3>
+
+</section>
+
+<section>
+
+<h3><code>Task</code> required a framework version</h3>
+
+<h3>above .NET 4.0</h3>
+
+</section>
+
+<section>
+
+<h3>So in the end we adopted</h3>
+
+<h3>the <a href="https://groups.google.com/d/msg/net-http-abstractions/rD18Hj1DwdQ/d_nrDyOLqcIJ">"Delegate of Doom"</a></h3>
+
+<table class="pre"><tr><td><pre lang="cs"><span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> AppDelegate(
+    IDictionary&lt;<span class="k">string</span>, <span class="k">object</span>&gt; env,
+    ResultDelegate result,
+    Action&lt;Exception&gt; fault);
+
+<span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> ResultDelegate(
+    <span class="k">string</span> status,
+    IDictionary&lt;<span class="k">string</span>, IEnumerable&lt;<span class="k">string</span>&gt;<span class="o">&gt;</span> headers,
+    BodyDelegate body);
+
+<span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> BodyDelegate(
+    Func&lt;ArraySegment&lt;<span class="k">byte</span>&gt;, <span class="k">bool</span>&gt; write,
+    Func&lt;Action, <span class="k">bool</span>&gt; flush,
+    Action&lt;Exception&gt; end,
+    CancellationToken cancellationToken);</pre></td></tr></table>
+
+</section>
+
+<section>
+
+<h3>We finally had a solution,</h3>
+
+<h3>along with many problems</h3>
+
+<p><em>(verse 3)</em></p>
+
+</section>
+
+<section>
+
+<h3>Where before we had prototypes;</h3>
+
+<h3>now we had only the spec</h3>
+
+</section>
+
+<section>
+
+<h3>Devs had trouble with DoD,</h3>
+
+<h3>so Ben and Lou built Gate</h3>
+
+</section>
+
+<section>
+
+<h3>But what nobody noticed</h3>
+
+<h3>Gate <em>was</em> a (helper) dependency!</h3>
+
+<p><img src="http://www.topito.com/wp-content/uploads/2013/01/code-34.gif" alt="When your library dependency becomes a helper dependency" /></p>
+
+<p><em>from <a href="http://server.dzone.com/articles/reality-developers-life-gifs">The Reality of a Developer's Life - in GIFs, Of Course</a></em></p>
+
+</section>
+
+<section>
+
+<h3>Then along came SignalR</h3>
+
+<h3>We tried to claim victory</h3>
+
+<p><em>(chorus)</em></p>
+
+</section>
+
+<section>
+
+<h3>We only had one problem:</h3>
+
+<h3><a href="https://groups.google.com/d/msg/net-http-abstractions/Cbvy2x27Few/Oor2UwA0W1wJ">"Delegate of Doom" didn't work</a></h3>
+
+</section>
+
+<section>
+
+<section>
+
+<h3>We went back to the drawing board:</h3>
+
+<h3>Single- or double-tap?</h3>
+
+</section>
+
+<section>
+
+<h2>Double-tap</h2>
+
+<ul>
+<li>Nancy</li>
+<li>OWIN</li>
+<li>Rack</li>
+<li>Web API</li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>Single-tap</h2>
+
+<ul>
+<li>ASP.NET MVC</li>
+<li>Fubu MVC</li>
+<li>node.js</li>
+<li>Razor</li>
+<li>SignalR</li>
+</ul>
+
+</section>
+
+<section>
+
+<h2>Explained</h2>
+
+<blockquote>
+  <p>There are ways to run a single-tap web framework on a double-tap owin pipeline, but they all boil down to buffering write data.... Increased complexity, more memory to hold the body until the fwk returns, and cpu spent copying that data… Plus for fully synchronous web frameworks it means every response body will be entirely buffered because there’s no way for the server to deliver the output stream until the initial call returns. ... it’s pretty extreme compared to just passing the server’s output stream and a response header idictionary in the original call.</p>
+</blockquote>
+
+</section>
+
+<section>
+
+<h2>Explained (cont)</h2>
+
+<blockquote>
+  <p>Running a double-tap framework on a single-tap pipeline by comparison is easy – the adapter just calls framework then calls its callback with the output stream.</p>
+</blockquote>
+
+</section>
+
+</section>
+
+<section>
+
+<section>
+
+<h3>And proposed a solution,</h3>
+
+<h3>a simple delegate:</h3>
+
+<table class="pre"><tr><td><pre lang="cs"><span class="k">using</span> AppFunc <span class="o">=</span> Func&lt;IDitionary&lt;<span class="k">string</span>, <span class="k">object</span>&gt;, Task&gt;</pre></td></tr></table>
+
+</section>
+
+<section>
+
+<h2><code>Task</code>?</h2>
+
+</section>
+
+</section>
+
+<section>
+
+<h3>Now we had real users</h3>
+
+<h3>and started gaining traction</h3>
+
+<p><em>(verse 4)</em></p>
+
+</section>
+
+<section>
+
+<h3>We knew its name in an instant;</h3>
+
+<h3>we knew the F5 experience</h3>
+
+</section>
+
+<section>
+
+<h3>It was our old friend ASP.NET,</h3>
+
+<h3>and we said, "Ah! It's you"</h3>
+
+</section>
+
+<section>
+
+<h3>Then we laughed for a moment,</h3>
+
+<h3>and we said, "We never knew ..."</h3>
+
+</section>
+
+<section>
+
+<h3>That you would unlock our big goal</h3>
+
+<h3>with MVC6</h3>
+
+<p><em>(chorus)</em></p>
+
+</section>
+
+<section>
+
+<h3>And build the Kestrel web server</h3>
+
+<h3>that could run on Linux and Mac</h3>
+
+</section>
+
+<section>
+
+<h3>If you like writing middleware pipelines</h3>
+
+<h3>with <code>.Use</code> and <code>.Map</code> extensions,</h3>
+
+</section>
+
+<section>
+
+<h3>Then you're the framework <br /> we've looked for</h3>
+
+<h3>let's go build new web apps!</h3>
+
+</section>
+
+<section>
+
+<h2>One more time?</h2>
+
+</section>
+
+<section>
+
+<h2>OWIN Management Committee</h2>
+
+</section>
+
+<section>
+
+<h2><a href="https://github.com/owin/owin/issues">Specification Updates</a></h2>
+
+</section>
+
+<section>
+
+<h1>Join Us!</h1>
+
+<p><a href="http://owin.org">http://owin.org</a></p>
+
+<p><a href="http://github.com/owin/owin">http://github.com/owin/owin</a></p>
+
+<p><a href="http://groups.google.com/group/net-http-abstractions">http://groups.google.com/group/net-http-abstractions</a></p>
 
 </section>
 
