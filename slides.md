@@ -303,7 +303,7 @@ Accepted!
 ## New Implementations
 
 * [Fix](https://github.com/FixProject/Fix)
-* [Dyfrig](https://github.com/panesofglass/dyfrig)
+* [Freya](https://github.com/freya-fs/freya)
 * [SimpleOwin](https://github.com/prabirshrestha/simple-owin)
 * [Simple.Owin](https://github.com/EddieGarmon/Simple.Owin)
 
@@ -340,7 +340,7 @@ Specified type aliases removed, but `IAppBuilder` remains:
 
 ---
 
-## [Dyfrig](http://www.nuget.org/packages/Dyfrig/)
+## [Freya](http://www.nuget.org/packages/Freya/)
 
 ***
 
